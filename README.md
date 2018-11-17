@@ -1,16 +1,18 @@
 Beyonce (Bey-Hive) Fan page
 Within this application users are able to log in, listen to Beyonce's music, and submit comments.
 
-![alt text](http://www.hypehair.com/wp-content/uploads/2016/02/beyonce-superbowl-640x640.jpg)
+![alt text](https://i2.wp.com/rnbmain.thisisrnb.netdna-cdn.com/wp-content/uploads/2016/05/Beyonce-Lemonade-Promoshoot-12.jpg)
 
 
 
 Installation:
 
-Clone my repo
+Clone my repo,
 Open your terminal and run npm install to download the necessary node modules
-Usage
-Once everything is downloaded, in the terminal run npm run savage
+
+Usage:
+
+Once everything is downloaded, in the terminal run node server.js,
 Open your browser and navigate to localhost:3000
 
 

@@ -1,7 +1,9 @@
+
 body{
   padding-top:80px;
   word-wrap:break-word;
+  background-color: black;
 }
 img{
-  height: 200px;
+  height: 300px;
 }

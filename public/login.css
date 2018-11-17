@@ -1,0 +1,12 @@
+body{
+  padding-top:80px;
+  word-wrap:break-word;
+  background-color: grey;
+  color: black;
+}
+img{
+  height: 200px;
+}
+html {
+  font-family: 'KoHo', sans-serif;
+}

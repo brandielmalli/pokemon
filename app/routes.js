@@ -7,7 +7,7 @@ module.exports = function(app, passport, db) {
         res.render('index.ejs');
     });
 
-    // PROFILE SECTION =========================
+    // PROFILE SECTION ========================= function..will only goes thru if prof is logged in
     app.get('/profile', isLoggedIn, function(req, res) {
         db.collection('messages').find().toArray((err, result) => {
           if (err) return console.log(err)
@@ -18,14 +18,16 @@ module.exports = function(app, passport, db) {
         })
     });
 
-    // LOGOUT ==============================
+    // LOGOUT ============================== ends sec redirects to home page
     app.get('/logout', function(req, res) {
         req.logout();
         res.redirect('/');
     });
 
 // message board routes ===============================================================
-
+//req body sending form data body parser (breaks down form)
+//post sending information (info in req parameter)
+//form makes post to server sends database, req pulls data
     app.post('/messages', (req, res) => {
       db.collection('messages').save({name: req.body.name, msg: req.body.msg, thumbUp: 0, thumbDown:0}, (err, result) => {
         if (err) return console.log(err)
@@ -34,6 +36,7 @@ module.exports = function(app, passport, db) {
       })
     })
 
+//trigger req.
     app.put('/messages', (req, res) => {
       db.collection('messages')
       .findOneAndUpdate({name: req.body.name, msg: req.body.msg}, {
@@ -49,7 +52,22 @@ module.exports = function(app, passport, db) {
       })
     })
 
-    app.delete('/messages', (req, res) => {
+    app.put('/thumbDown', (req, res) => {
+  db.collection('messages')
+  .findOneAndUpdate({name: req.body.name, msg: req.body.msg}, {
+    $set: {
+      thumbDown:req.body.thumbDown + 1
+    }
+  }, {
+    sort: {_id: -1},
+    upsert: true
+  }, (err, result) => {
+    if (err) return res.send(err)
+    res.send(result)
+  })
+})
+
+    app.delete('/delete', (req, res) => {
       db.collection('messages').findOneAndDelete({name: req.body.name, msg: req.body.msg}, (err, result) => {
         if (err) return res.send(500, err)
         res.send('Message deleted!')
@@ -94,7 +112,10 @@ module.exports = function(app, passport, db) {
 // for local account, remove email and password
 // user account will stay active in case they want to reconnect in the future
 
-    // local -----------------------------------
+    // local --------------------------------- undefined by email,psswrd)(morally ethical way to fully delete an account) ->
+   //some sites save info by setting boolean to false but ur subject to hacks n being re-targeted with future ads running against u.
+   //fb uses machine algorithms to know everything about you target an push ads ,faragade pocket for privacy, blocking all asignals
+
     app.get('/unlink/local', isLoggedIn, function(req, res) {
         var user            = req.user;
         user.local.email    = undefined;

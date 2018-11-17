@@ -22,11 +22,13 @@ var db
 mongoose.connect(configDB.url, { useMongoClient: true }, (err, database) => {
   if (err) return console.log(err)
   db = database
+
+//calling a function - (routes) holds api
   require('./app/routes.js')(app, passport, db);
 }); // connect to our database
 
 
-
+//function calling passport module
 require('./config/passport')(passport); // pass passport for configuration
 
 // set up our express application
@@ -34,6 +36,7 @@ app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser.json()); // get information from html forms
 app.use(bodyParser.urlencoded({ extended: true }));
+//grabs client side files
 app.use(express.static('public'))
 
 app.set('view engine', 'ejs'); // set up ejs for templating
