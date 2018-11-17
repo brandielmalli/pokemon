@@ -1,13 +1,26 @@
-## Installation
+Beyonce (Bey-Hive) Fan page
+Within this application users are able to log in, listen to Beyonce's music, and submit comments.
 
-1. Clone repo
-2. run `npm install`
+![alt text](http://www.hypehair.com/wp-content/uploads/2016/02/beyonce-superbowl-640x640.jpg)
 
-## Usage
 
-1. run `node server.js`
-2. Navigate to `localhost:8080`
 
-## Credit
+Installation:
 
-Modified from Scotch.io's auth tutorial
+Clone my repo
+Open your terminal and run npm install to download the necessary node modules
+Usage
+Once everything is downloaded, in the terminal run npm run savage
+Open your browser and navigate to localhost:3000
+
+
+How It's Made:
+Tech used: HTML, CSS, JavaScript, Node.js, MongoDB, Express, EJS
+
+This application allows users to login, listen to Beyonce, and submit their comments.
+
+I used EJS to make an HTML template file that could be easily populated later with entries from the Mongo database I created.
+
+In the server.js file, there are several http requests that make the app function:
+
+I also embedded a third-party media player from BandCamp so that users can listen to some of Beyonces songs.
